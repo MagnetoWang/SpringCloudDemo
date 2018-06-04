@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cloudclient" />
         <module name="cloudserver" />
+        <module name="service-ribbon" />
         <module name="SpringCloudDemo" />
       </profile>
     </annotationProcessing>

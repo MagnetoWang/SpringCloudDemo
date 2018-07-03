@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="annotation" />
         <module name="cloudclient" />
         <module name="cloudserver" />
         <module name="config-client" />
@@ -14,7 +15,6 @@
         <module name="serice-feign" />
         <module name="service-ribbon" />
         <module name="service-zuul" />
-        <module name="SpringCloudDemo" />
       </profile>
     </annotationProcessing>
   </component>

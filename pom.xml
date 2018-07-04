@@ -88,16 +88,16 @@
 
 
         <!--链家-->
-        <dependency>
-            <groupId>com.lianjia.plats</groupId>
-            <artifactId>commons-config-springboot</artifactId>
-            <version>1.0.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lianjia.plats</groupId>
-            <artifactId>commons-log</artifactId>
-            <version>1.0.4</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.lianjia.plats</groupId>-->
+            <!--<artifactId>commons-config-springboot</artifactId>-->
+            <!--<version>1.0.4</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.lianjia.plats</groupId>-->
+            <!--<artifactId>commons-log</artifactId>-->
+            <!--<version>1.0.4</version>-->
+        <!--</dependency>-->
 
 
     </dependencies>

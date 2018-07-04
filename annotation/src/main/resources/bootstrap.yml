@@ -1,2 +1,12 @@
 server:
   port: 8888
+
+spring:
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 128KB
+      max-request-size: 128KB
+#  http:
+#    multipart:
+#      enabled:  false

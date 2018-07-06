@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:feed="http://www.springframework.org/schema/integration/feed"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration/feed
+       http://www.springframework.org/schema/integration/feed/spring-integration-feed.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration/file
+		http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/integration
+		http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+
+    <!--<feed:inbound-channel-adapter>. An inbound adapter that retrieves the posts,
+    one per poll. As configured here, it polls every 5 seconds.
+    The posts are placed into a channel named "news" (corresponding with the adapter’s ID).-->
+    <feed:inbound-channel-adapter id="news" url="http://spring.io/blog.atom" auto-startup="${auto.startup:true}">
+        <int:poller fixed-rate="5000"/>
+    </feed:inbound-channel-adapter>
+
+
+    <!--<int:transformer>. Transforms entries (com.rometools.rome.feed.synd.SyndEntry) in the "news" channel,
+    extracting the entry’s title (payload.title) and link (payload.link)
+     and concatenating them into a readable String (adding a newline).
+      The String is then sent to the output channel named "file".-->
+    <int:transformer
+            input-channel="news"
+            expression="payload.title + ' @ ' + payload.link + '#{systemProperties['line.separator']}'"
+            output-channel="file"/>
+
+
+
+    <!--<file:outbound-channel-adapter>. An outbound channel adapter that writes content
+    from its channel (here named "file") to a file.
+    Specifically, as configured here, it will append anything in the "file" channel
+    to a file at /tmp/si/SpringBlog.-->
+    <file:outbound-channel-adapter id="file"
+                                   mode="APPEND"
+                                   charset="UTF-8"
+                                   directory="/storData/si"
+                                   filename-generator-expression="'${feed.file.name:SpringBlog}'"/>
+
+</beans>
